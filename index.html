@@ -10,17 +10,20 @@
 
   <form id="my_form">
     <label for="name">Enter your Name</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" name="name" autocomplete="name">
     <br><br>
 
-    <label for="email">enter your mail id</label>
-    <input type="email" id="email" name="email" required>
+    <label for="email">Enter your mail id</label>
+    <input type="email" id="email" name="email" autocomplete="email">
+    <br><br>
+    
+    <label for="phone-no">Enter your phone no</label>
+    <input type="tel" id="phone-no" name="phone-no" autocomplete="tel">
     <br><br>
 
-    <input type="button" id="sumbit" value="sumbit">
-
-
+    <input type="button" id="submit" value="Submit">
   </form>
+
   <script src="main.js"></script>
 </body>
 </html>
