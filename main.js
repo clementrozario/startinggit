@@ -29,6 +29,24 @@ document.addEventListener('DOMContentLoaded', function() {
     displayFormData();
   }
 
+  function deleteEntry(index) {
+    // Retrieve form data from localStorage.
+    let storedData = localStorage.getItem("formData");
+    
+    if (storedData) {
+      let formDataArray = JSON.parse(storedData);
+
+      // Remove the entry at the specified index.
+      formDataArray.splice(index, 1);
+
+      // Update the stored form data in localStorage.
+      localStorage.setItem("formData", JSON.stringify(formDataArray));
+
+      // Display the updated form data.
+      displayFormData();
+    }
+  }
+
   function displayFormData() {
     // Get the stored form data from localStorage.
     let storedData = localStorage.getItem("formData");
@@ -40,9 +58,18 @@ document.addEventListener('DOMContentLoaded', function() {
       const list = document.createElement("ul");
 
       // Loop through the form data and create list items.
-      formDataArray.forEach(function(formData) {
+      formDataArray.forEach(function(formData, index) {
         const listItem = document.createElement("li");
         listItem.textContent = `Name: ${formData.name}, Email: ${formData.email}, Phone: ${formData.phoneno}`;
+
+        // Create a delete button for each entry.
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", function() {
+          deleteEntry(index);
+        });
+
+        listItem.appendChild(deleteButton);
         list.appendChild(listItem);
       });
 
